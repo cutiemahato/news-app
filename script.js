@@ -1,6 +1,20 @@
 const API_KEY = "1d3a0eefa97b499d8fbc4ee93eeb40b7";
 const url = "https://newsapi.org/v2/everything?q=";
 
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Your routes and other middleware...
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
+});
+
 window.addEventListener("load", () => fetchNews("India"));
 
 function reload() {
