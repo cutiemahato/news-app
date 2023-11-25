@@ -1,17 +1,23 @@
 const API_KEY = "1d3a0eefa97b499d8fbc4ee93eeb40b7";
 const url = "https://newsapi.org/v2/everything?q=";
 
-const express = require("express");
-const cors = require("cors");
+const http = require("http");
 
-const app = express();
+const server = http.createServer((req, res) => {
+  // Set CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
-// Enable CORS for all routes
-app.use(cors());
+  // Your route handling...
 
-// Your routes and other middleware...
+  res.end("Hello World!");
+});
 
-app.listen(3000, () => {
+server.listen(3000, () => {
   console.log("Server is running on port 3000");
 });
 
