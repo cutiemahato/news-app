@@ -1,26 +1,6 @@
 const API_KEY = "1d3a0eefa97b499d8fbc4ee93eeb40b7";
 const url = "https://newsapi.org/v2/everything?q=";
 
-const http = require("http");
-
-const server = http.createServer((req, res) => {
-  // Set CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  // Your route handling...
-
-  res.end("Hello World!");
-});
-
-server.listen(3000, () => {
-  console.log("Server is running on port 3000");
-});
-
 window.addEventListener("load", () => fetchNews("India"));
 
 function reload() {
