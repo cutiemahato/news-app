@@ -1,26 +1,20 @@
 const express = require("express");
-const fetch = require("node-fetch");
+const cors = require("cors");
 
 const app = express();
-const port = 3000;
 
-app.use(express.json());
+const corsOptions = {
+  origin: "https://newsapi.org/v2/everything?q=",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
 
-app.get("/news", async (req, res) => {
-  const { query } = req.query;
-  const apiKey = "1d3a0eefa97b499d8fbc4ee93eeb40b7";
-  const apiUrl = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`;
+// Enable CORS with options
+app.use(cors(corsOptions));
 
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+// ... your routes and other middleware ...
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
