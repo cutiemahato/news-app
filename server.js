@@ -10,11 +10,9 @@ const corsOptions = {
   optionsSuccessStatus: 204,
 };
 
-// Enable CORS with options
 app.use(cors(corsOptions));
 
-// ... your routes and other middleware ...
-
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(5501, () => {
+  console.log("Server is running on port 5501");
 });
+S;
