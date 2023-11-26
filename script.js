@@ -6,6 +6,13 @@ window.addEventListener("load", () => fetchNews("India"));
 function reload() {
   window.location.reload();
 }
+
+async function fetchNews(query) {
+  const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+  const data = await res.json();
+  bindData(data.articles);
+}
+
 // new line added to fix cors//
 const express = require("express");
 const fetch = require("node-fetch");
@@ -33,12 +40,6 @@ app.get("/news", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
-async function fetchNews(query) {
-  const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-  const data = await res.json();
-  bindData(data.articles);
-}
 
 function bindData(articles) {
   const cardsContainer = document.getElementById("cards-container");
