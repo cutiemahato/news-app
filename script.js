@@ -10,8 +10,8 @@ function reload() {
 }
 // changes are made
 async function fetchNews(query) {
-  const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
-  // const res = await fetch(`${API_URL}?query=${query}`);
+  // const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+  const res = await fetch(`${API_URL}?query=${query}`);
 
   const data = await res.json();
   bindData(data.articles);
