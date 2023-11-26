@@ -1,45 +1,20 @@
 const API_KEY = "1d3a0eefa97b499d8fbc4ee93eeb40b7";
 const url = "https://newsapi.org/v2/everything?q=";
+const API_URL = "http://localhost:3000/news";
 
 window.addEventListener("load", () => fetchNews("India"));
 
 function reload() {
   window.location.reload();
 }
-
+// changes are made
 async function fetchNews(query) {
-  const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);
+  // const res = await fetch(`${url}${query}&apiKey=${API_KEY}`);/
+  const res = await fetch(`${API_URL}?query=${query}`);
+
   const data = await res.json();
   bindData(data.articles);
 }
-
-// new line added to fix cors//
-const express = require("express");
-const fetch = require("node-fetch");
-
-const app = express();
-const port = 3000;
-
-app.use(express.json());
-
-app.get("/news", async (req, res) => {
-  const { query } = req.query;
-  const apiKey = "1d3a0eefa97b499d8fbc4ee93eeb40b7";
-  const apiUrl = `https://newsapi.org/v2/everything?q=${query}&apiKey=${apiKey}`;
-
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
 
 function bindData(articles) {
   const cardsContainer = document.getElementById("cards-container");
